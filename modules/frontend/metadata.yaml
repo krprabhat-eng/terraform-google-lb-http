@@ -225,7 +225,7 @@ spec:
       - name: external_ipv6_address
         description: The external IPv6 assigned to the global fowarding rule.
         type: string
-      - name: forwarding_rule
+      - name: forwarding_rules
         description: Forwarding rule for this load balancer.
         type:
           - list
