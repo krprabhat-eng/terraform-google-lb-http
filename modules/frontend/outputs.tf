@@ -108,4 +108,5 @@ output "forwarding_rule" {
       google_compute_global_forwarding_rule.https_ipv6[0].id
     ] : [],
   )
+  description = "Forwarding rule for this load balancer."
 }

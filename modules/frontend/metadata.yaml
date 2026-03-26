@@ -225,6 +225,11 @@ spec:
       - name: external_ipv6_address
         description: The external IPv6 assigned to the global fowarding rule.
         type: string
+      - name: forwarding_rule
+        description: Forwarding rule for this load balancer.
+        type:
+          - list
+          - string
       - name: http_proxy
         description: The HTTP proxy used by this module.
         type: string
@@ -254,11 +259,11 @@ spec:
     roles:
       - level: Project
         roles:
+          - roles/compute.admin
           - roles/storage.admin
           - roles/iap.admin
           - roles/certificatemanager.owner
           - roles/iam.serviceAccountUser
-          - roles/compute.admin
     services:
       - certificatemanager.googleapis.com
       - compute.googleapis.com
