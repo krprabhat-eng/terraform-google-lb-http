@@ -92,3 +92,20 @@ output "apphub_service_uri" {
   )
   description = "Service URI in CAIS style to be used by Apphub."
 }
+
+output "forwarding_rule" {
+  value = concat(
+    local.create_http_forward && !local.is_internal_managed ? [
+      google_compute_global_forwarding_rule.http[0].id
+    ] : [],
+    var.ssl && !local.is_internal_managed ? [
+      google_compute_global_forwarding_rule.https[0].id
+    ] : [],
+    (var.enable_ipv6 && local.create_http_forward && !local.is_internal_managed) ? [
+      google_compute_global_forwarding_rule.http_ipv6[0].id
+    ] : [],
+    var.enable_ipv6 && var.ssl && !local.is_internal_managed ? [
+      google_compute_global_forwarding_rule.https_ipv6[0].id
+    ] : [],
+  )
+}
